@@ -1,7 +1,6 @@
-import dotenv from "dotenv";
-dotenv.config();
 import express from "express";
 import cors from "cors";
+import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import { dbConnection } from "./database/dbConnection.js";
@@ -10,13 +9,11 @@ import userRouter from "./routes/userRoutes.js";
 import applicationRouter from "./routes/applicationRoutes.js";
 import { errorMiddleware } from "./middlewares/error.js";
 
+// Load Environment Variables
+config({ path: "./config/config.env" });
+
 const app = express();
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://localhost:5175",
-  "https://job-portal-jk07.netlify.app"
-];
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174','http://localhost:5175','https://job-portal-jk07.netlify.app'];
 
 // CORS Middleware with allowed origins
 app.use(
